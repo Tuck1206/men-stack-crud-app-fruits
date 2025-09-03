@@ -5,17 +5,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Fruits Index</title>
   </head>
   <body>
-    <!-- views/fruits/index.ejs -->
-  <h1>All Fruits</h1>
-  <ul>
-    <% fruits.forEach(fruit => { %>
-      <a href="/fruits/<%= fruit._id %>"> <%= fruit.name %> </a> <br>
-    <% }); %>
-  </ul>
-  <a href="/fruits/new">Add New Fruit</a>
-  <a href="/">Home</a>
+   <!-- index.ejs -->
+   <div class="index-header-div">
+     <h1>All Fruits</h1>
+     <a class="add-fruit" href="/fruits/new">Add fruit</a>
+   </div>
+   <ul>
+     <% fruits.forEach((fruit)=> { %>
+     <li>
+       <a class="fruit-cards" href="/fruits/<%=fruit._id%>">
+         <%= fruit.name %>
+       </a>
+     </li>
+     <% }) %>
+   </ul>
+ <!-- edit.ejs / show.ejs -->
+
+ <a class="fruits-index-link" href="/fruits">
+   <div class="index-link-text">Back to Fruits</div>
+ </a>
+
+ <!-- edit.ejs / show.ejs -->
+
+ <a class="fruits-index-link" href="/">
+   <div class="index-link-text">Home</div>
+ </a>
+
   </body>
 </html>

@@ -7,11 +7,21 @@
   <label for="name">Name:</label>
   <input type="text" name="name" id="name" />
 
-  <label for="isReadyToEat">Ready to Eat?</label>
-  <input type="checkbox" name="isReadyToEat" <% if (fruit.isReadyToEat) { %>checked<% } %> >
+   <!-- new.ejs / edit.ejs -->
+
+ <div class="checkbox-div">
+   <label for="ready-to-eat">Ready to Eat?</label>
+   <input type="checkbox" name="isReadyToEat" <% if (fruit.isReadyToEat) { %>checked<% } %> > id="ready-to-eat" />
+ </div>
+
 
   <button type="submit">Update Fruit</button>
 </form>
 
-  <a href="/fruits">Back to Fruits</a>
+   <!-- edit.ejs / show.ejs -->
+
+ <a class="fruits-index-link" href="/fruits">
+   <div class="index-link-text">Back to Fruits</div>
+ </a>
+
 </body>

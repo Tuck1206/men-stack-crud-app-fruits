@@ -14,6 +14,8 @@ const methodOverride = require("method-override") // new
 
 const morgan = require("morgan") //new
 
+ const path = require("path")
+
 mongoose.connect(process.env.MONGODB_URI)
 
 mongoose.connection.on("connected", () => {
@@ -25,6 +27,14 @@ const Fruit = require("./models/fruit.js")
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride("_method")) // new
 app.use(morgan("dev")) //new
+
+ // new code below this line
+ app.use(express.static(path.join(__dirname, "public")))
+
+ // new code above this line
+ app.get("/", async (req, res) => {
+   res.render("index.ejs")
+ })
 
 
 // server.js

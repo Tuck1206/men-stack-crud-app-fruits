@@ -5,6 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/stylesheets/style.css" />
     <title><%= fruit.name %></title> <!-- Dynamic title based on fruit name -->
   </head>
   <body>
@@ -15,13 +16,39 @@
   <% } else { %>
     <p>This fruit is not ready to eat!</p>
   <% } %>
-  <form action="/fruits/<%=fruit._id%>?_method=DELETE" method="POST">
-  <button type="submit">Delete <%= fruit.name %></button>
-  <a href="/fruits/<%= fruit._id %>/edit">Edit <%= fruit.name %></a>
-</form>
+   <div class="fruit-actions">
+   <form
+     class="delete-form"
+     action="/fruits/<%=fruit._id%>?_method=DELETE"
+     method="POST"
+   >
+     <button class="delete-button" type="submit">
+       Delete <%= fruit.name %>
+     </button>
+   </form>
+   <a class="edit-link" href="/fruits/<%= fruit._id %>/edit">
+     <div class="edit-text">Edit <%= fruit.name %></div>
+   </a>
+ </div>
+
     <!-- Add more details about the fruit here -->
   </body>
-  <a href="/fruits/">Back to Fruits</a>
-  <a href="/">Home</a>
-   <a href="/fruits/new">Add New Fruit</a>
+ <!-- edit.ejs / show.ejs -->
+
+ <a class="fruits-index-link" href="/fruits">
+   <div class="index-link-text">Back to Fruits</div>
+ </a>
+
+   <!-- edit.ejs / show.ejs -->
+
+ <a class="fruits-index-link" href="/">
+   <div class="index-link-text">Home</div>
+ </a>
+
+    <!-- edit.ejs / show.ejs -->
+
+ <a class="fruits-index-link" href="/fruits/new">
+   <div class="index-link-text">Add New Fruit</div>
+ </a>
+
 </html>
