@@ -10,6 +10,10 @@ const app = express()
 
 const mongoose = require("mongoose") // require package
 
+const methodOverride = require("method-override") // new
+
+const morgan = require("morgan") //new
+
 mongoose.connect(process.env.MONGODB_URI)
 
 mongoose.connection.on("connected", () => {
@@ -19,6 +23,8 @@ mongoose.connection.on("connected", () => {
 const Fruit = require("./models/fruit.js")
 
 app.use(express.urlencoded({ extended: false }))
+app.use(methodOverride("_method")) // new
+app.use(morgan("dev")) //new
 
 
 // server.js
@@ -78,6 +84,33 @@ app.get("/fruits/:fruitId", async (req, res) => {
   const foundFruit = await Fruit.findById(req.params.fruitId)
   res.render("fruits/show.ejs", { fruit: foundFruit })
 })
+
+
+//app.delete("/fruits/:fruitId", (req, res) => {
+//  res.send("This is the delete route")
+//})
+
+app.delete("/fruits/:fruitId", async (req, res) => {
+  await Fruit.findByIdAndDelete(req.params.fruitId)
+  res.redirect("/fruits")
+})
+
+// GET localhost:3000/fruits/:fruitId/edit
+//app.get("/fruits/:fruitId/edit", async (req, res) => {
+  //const foundFruit = await Fruit.findById(req.params.fruitId)
+ // console.log(foundFruit)
+ // res.send(`This is the edit route for ${foundFruit.name}`)
+//})
+
+app.get("/fruits/:fruitId/edit", async (req, res) => {
+  const foundFruit = await Fruit.findById(req.params.fruitId)
+  res.render("fruits/edit.ejs", {
+    fruit: foundFruit,
+  })
+})
+
+
+
 
 
 
