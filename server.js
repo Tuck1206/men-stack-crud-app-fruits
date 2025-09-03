@@ -42,6 +42,19 @@ app.get("/", async (req, res) => {
   //res.send("This route sends the user a form page!")
 //})
 
+//app.get("/fruits", async (req, res) => {
+  //const allFruits = await Fruit.find();
+  //console.log(allFruits); // log the fruits!
+  //res.send("Welcome to the index page!")
+//})
+
+app.get("/fruits", async (req, res) => {
+  const allFruits = await Fruit.find();
+  res.render("fruits/index.ejs", { fruits: allFruits })
+});
+
+
+
 // server.js
 
 // GET /fruits/new
@@ -52,10 +65,37 @@ app.get("/fruits/new", (req, res) => {
 // server.js
 
 // POST /fruits
+//app.post("/fruits", async (req, res) => {
+  //console.log(req.body);
+ // res.redirect("/fruits/new")
+//})
+
+// server.js
+
+// POST /fruits
+//app.post("/fruits", async (req, res) => {
+  //if (req.body.isReadyToEat === "on") {
+    //req.body.isReadyToEat = true
+  //} else {
+   // req.body.isReadyToEat = false
+  //}
+  //await Fruit.create(req.body)
+  //res.redirect("/fruits/new")
+//})
+
+// server.js
+
+// POST /fruits
 app.post("/fruits", async (req, res) => {
-  console.log(req.body);
-  res.redirect("/fruits/new")
+  if (req.body.isReadyToEat === "on") {
+    req.body.isReadyToEat = true
+  } else {
+    req.body.isReadyToEat = false
+  }
+  await Fruit.create(req.body)
+  res.redirect("/fruits"); // redirect to index fruits
 })
+
 
 
 
