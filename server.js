@@ -62,6 +62,26 @@ app.get("/fruits/new", (req, res) => {
   res.render("fruits/new.ejs")
 })
 
+
+//app.get("/fruits/:fruitId", (req, res) => {
+  //res.send(
+    //`This route renders the show page for fruit id: ${req.params.fruitId}!`
+  //)
+//})
+
+//app.get("/fruits/:fruitId", async (req, res) => {
+  //const foundFruit = await Fruit.findById(req.params.fruitId);
+  //res.send(`This route renders the show page for fruit id: ${req.params.fruitId}!`)
+//})
+
+app.get("/fruits/:fruitId", async (req, res) => {
+  const foundFruit = await Fruit.findById(req.params.fruitId)
+  res.render("fruits/show.ejs", { fruit: foundFruit })
+})
+
+
+
+
 // server.js
 
 // POST /fruits
